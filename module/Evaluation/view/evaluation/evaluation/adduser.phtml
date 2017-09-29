@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+	<meta charset="UTF-8">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap-responsive.min.css" rel="stylesheet">
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+    <link href="css/font-awesome.css" rel="stylesheet">
+
+    <link href="css/style.css" rel="stylesheet">
+	<link href="css/pages/createNewUser.css" rel="stylesheet" type="text/css">
+	</head>
+    <body>
+	<?php if($class->getCurrentUser($class->user_role) !== 'admin'){
+ 		header('Location: index.php');
+	  } ?>
+		<?php include 'navbar.php'; ?>
+		<div class="account-container">
+
+			<div class="content clearfix">
+
+				<div class="login-fields">
+
+					<h1>Add User</h1><br>
+
+					<form action="createNewUser.php" method="POST">
+
+						<?php
+						/** Display error messages if "user" field is empty or there is already a user with that name */
+						if ($userIsEmpty) {
+							echo ("Enter your name, please!");
+							echo ("<br/>");
+						}
+						if (!$userNameIsUnique) {
+							echo ("The person already exists. Please check the spelling and try again");
+							echo ("<br/>");
+						}
+						?>
+
+						Username: <input type="text" name="user"class="login username-field" maxlength="15"/><br/>
+
+						<?php
+						/** Display error messages if the "password" field is empty */
+						if ($passwordIsEmpty) {
+							echo ("Enter the password, please!");
+							echo ("<br/>");
+						}
+						?>
+
+						Password: <input type="password" name="password"class="login password-field"/><br/>
+
+						<?php
+						/** Display error messages if the "password2" field is empty
+						* or its contents do not match the "password" field
+						*/
+						if ($password2IsEmpty) {
+							echo ("Confirm your password, please!");
+							echo ("<br/>");
+						}
+						if (!$password2IsEmpty && !$passwordIsValid) {
+							echo ("<div>The passwords do not match!</div>");
+							echo ("<br/>");
+						}
+						?>
+
+						Please confirm your password: <input type="password" name="password2"class="login password-field"/><br/>
+
+						</div> <!--login-fields-->
+					<?php
+					if ($typeIsEmpty) {
+						echo("Choose the type of account you wish to create!");
+						echo("<br/>");
+					}
+					?>
+					<input type="radio" name="type" value="admin">Admin<br/>
+					<input type="radio" name="type" value="user">User<br/>
+
+					<input type="submit" value="Register"class="button btn btn-success btn-large"/>
+
+				</form>
+
+				</div><!--content clearfix-->
+
+			</div><!--account-container-->
+		<script src="js/jquery-1.7.2.min.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/base.js"></script>
+    </body>
+</html>

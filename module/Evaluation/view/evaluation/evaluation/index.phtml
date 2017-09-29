@@ -1,0 +1,49 @@
+<div class="main">
+	<div class="main-inner">
+		<div class="container">
+			<div class="row">
+				<div class="span12">
+					<div class="widget widget-nopad">
+						<div class="widget-header"> <i class="icon-list-alt"></i>
+							<h3> Recent Surveys <?php //print_r($last);?></h3>
+						</div>
+						<div class="widget-content"><!-- /widget-header -->
+							<div id="visualization" style="width: 1100px; height: 400px;"></div>
+						</div>
+					</div><!-- /widget -->
+				</div><!-- /span6 -->
+				<div class="span6">
+					<div class="widget">
+						<div class="widget-header"> <i class="icon-bookmark"></i>
+							<h3>Shortcuts</h3>
+						</div><!-- /widget-header -->
+						<div class="widget-content">
+            	<div class="shortcuts">
+								<a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-list-alt"></i><span class="shortcut-label">Apps</span></a>
+								<a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-bookmark"></i><span class="shortcut-label">Bookmarks</span></a>
+								<a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-signal"></i><span class="shortcut-label">Reports</span> </a>
+				  			<a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-comment"></i><span class="shortcut-label">Comments</span></a>
+				  			<a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-user"></i><span class="shortcut-label">Users - <?php //echo $class->getCount("h2o_users")?></span></a>
+				  			<a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-file"></i><span class="shortcut-label">Notes</span></a>
+				  			<a href="javascript:;" class="shortcut"><i class="shortcut-icon icon-picture"></i> <span class="shortcut-label">Photos</span> </a>
+			  			</div><!-- /shortcuts -->
+						</div><!-- /widget-content -->
+          </div><!-- /widget -->
+          <div class="widget">
+						<div class="widget-header"> <i class="icon-signal"></i>
+							<h3>Cool chart here</h3>
+						</div><!-- /widget-header -->
+						<div class="widget-content">
+							<canvas id="area-chart" class="chart-holder" height="600" width="538"></canvas><!-- /area-chart -->
+            </div>
+						<script type="text/javascript" src="//www.google.com/jsapi"></script>
+						<script type="text/javascript">
+							google.load('visualization', '1', {packages: ['corechart']});
+						</script><!-- <div id="visualization" style="width: 1300px; height: 400px;"></div> -->
+            <!-- /widget-content -->
+					</div><!-- /widget -->
+				</div><!-- /span6 -->
+			</div><!-- /row -->
+		</div><!-- /container -->
+	</div><!-- /main-inner -->
+</div><!-- /main -->
