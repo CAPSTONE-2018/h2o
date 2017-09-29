@@ -3,7 +3,7 @@ Capstone Refactor
 
 To install, run in parent directory of public html (ie /var/www):
 ```
-git clone -b refactor https://github.com/wCapstone-Fall-2017/h2o.git .
+git clone -b refactor https://github.com/Capstone-Fall-2017/h2o.git .
 
 ```
 
