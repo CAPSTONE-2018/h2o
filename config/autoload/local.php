@@ -12,4 +12,8 @@
  */
 
 return [
+  'db' => array(
+     'username' => 'cs440_h2o',
+     'password' => 'cs440_h2o',
+ ),
 ];

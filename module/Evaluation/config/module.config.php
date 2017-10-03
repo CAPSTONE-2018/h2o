@@ -2,16 +2,9 @@
 
 namespace Evaluation;
 
-use Zend\ServiceManager\Factory\InvokableFactory;
 use Zend\Router\Http\Segment;
 
 return [
-    'controllers' => [
-        'factories' => [
-            Controller\EvaluationController::class => InvokableFactory::class,
-        ],
-    ],
-
     // The following section is new and should be added to your file:
     'router' => [
         'routes' => [
