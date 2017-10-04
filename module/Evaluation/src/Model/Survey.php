@@ -17,6 +17,17 @@ class Survey
 		$this->dateTaken = 'temp';
 		$this->id = 0;
 	}
+
+  public function exchangeArray(array $data)
+  {
+    $this->answers     = !empty($data['answers']) ? $data['answers'] : null;
+    $this->dateTaken     = !empty($data['dateTaken']) ? $data['dateTaken'] : null;
+    $this->surveyBy = !empty($data['surveyby_u_id']) ? $data['surveyby_u_id'] : null;
+    $this->surveyFor  = !empty($data['surveyfor_u_id']) ? $data['surveyfor_u_id'] : null;
+    $this->surveysType = !empty($data['surveysType']) ? $data['surveysType'] : null;
+    $this->id     = !empty($data['id']) ? $data['id'] : null;
+  }
+
 	public static function load($id)
 	{
 		$s=new Survey();

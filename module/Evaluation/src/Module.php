@@ -31,7 +31,7 @@ class Module implements ConfigProviderInterface
           Model\UserTableGateway::class => function ($container) {
             $dbAdapter = $container->get(AdapterInterface::class);
             $resultSetPrototype = new ResultSet();
-            $resultSetPrototype->setArrayObjectPrototype(new Model\Survey());
+            $resultSetPrototype->setArrayObjectPrototype(new Model\User());
             return new TableGateway('survey', $dbAdapter, null, $resultSetPrototype);
           },
       ],
