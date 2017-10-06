@@ -2,7 +2,7 @@
 
 namespace Evaluation\Model;
 
-class Album
+class User
 {
     public $id;
     public $username;

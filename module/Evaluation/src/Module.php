@@ -22,6 +22,10 @@ class Module implements ConfigProviderInterface
             $tableGateway = $container->get(Model\SurveyTableGateway::class);
             return new Model\SurveyTable($tableGateway);
           },
+          Model\UserTable::class => function($container) {
+            $tableGateway = $container->get(Model\UserTableGateway::class);
+            return new Model\UserTable($tableGateway);
+          },
           Model\SurveyTableGateway::class => function ($container) {
             $dbAdapter = $container->get(AdapterInterface::class);
             $resultSetPrototype = new ResultSet();
