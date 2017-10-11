@@ -22,11 +22,10 @@ class EvaluationController extends AbstractActionController
     {
       $surveysResultSet = $this->surveyTable->fetchAll();
       $surveyCount = $surveysResultSet->count();
-      $surveys = $surveyResultSet->toArray();
       //last survey
-			$user1Survey = Survey::load($surveys[surveyCount - 1]->id);
+			$user1Survey = Survey::load($surveysResultSet[surveyCount-1]->id);
 			//Query for the second to last created survey
-			$user2Survey = Survey::load($surveys[surveyCount - 2]->id);
+			$user2Survey = Survey::load($survesResultSet[surveyCount-2]->id);
 			//Averages Categories and Pulls names
 			$u1S = $user1Survey->getCategoryRanks();
 			$u2S = $user2Survey->getCategoryRanks();
@@ -41,7 +40,7 @@ class EvaluationController extends AbstractActionController
         'u1N' => $u1N,
         'u2N' => $u2N,
         'last' => $user1Survey->id,
-        'userCount' => $userCount,
+        'userCount' => $userCount
       ]);
     }
 

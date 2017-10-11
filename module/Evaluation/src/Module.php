@@ -36,7 +36,7 @@ class Module implements ConfigProviderInterface
             $dbAdapter = $container->get(AdapterInterface::class);
             $resultSetPrototype = new ResultSet();
             $resultSetPrototype->setArrayObjectPrototype(new Model\User());
-            return new TableGateway('survey', $dbAdapter, null, $resultSetPrototype);
+            return new TableGateway('user', $dbAdapter, null, $resultSetPrototype);
           },
       ],
     ];
@@ -49,11 +49,11 @@ class Module implements ConfigProviderInterface
       'factories' => [
         Controller\EvaulationController::class => function($container) {
           return new Controller\EvaluationController(
-                    $container->get(Model\SurveyTable::class),
-                    $container->get(Model\UserTable::class),
-                );
-            },
-        ],
+            $container->get(Model\SurveyTable::class),
+            $container->get(Model\UserTable::class)
+          );
+        },
+      ],
     ];
   }
 }
