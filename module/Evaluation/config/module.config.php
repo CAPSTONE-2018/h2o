@@ -3,27 +3,28 @@
 namespace Evaluation;
 
 use Zend\Router\Http\Segment;
+use Zend\ServiceManager\Factory\InvokableFactory;
 
 return [
-    // The following section is new and should be added to your file:
     'router' => [
         'routes' => [
             'evaluation' => [
                 'type'    => Segment::class,
                 'options' => [
-                    'route' => '/evaluation[/:action]',
+                    'route' => '/evaluation[/:action[/:id]]',
                     'constraints' => [
                         'action' => '[a-zA-Z][a-zA-Z0-9_-]*',
+                        'id'     => '[0-9]+',
                     ],
                     'defaults' => [
                         'controller' => Controller\EvaluationController::class,
-                        'action'     => 'index',
+                        'action'     => 'index'
                     ],
                 ],
             ],
         ],
     ],
-
+    
     'view_manager' => [
         'display_not_found_reason' => true,
         'display_exceptions'       => true,
@@ -32,7 +33,7 @@ return [
         'exception_template'       => 'error/index',
         'template_map' => [
             'layout/layout'           => __DIR__ . '/../view/layout/layout.phtml',
-            'application/index/index' => __DIR__ . '/../view/evaluation/index/index.phtml',
+            'evaluation/evaluation/index' => __DIR__ . '/../view/evaluation/evaluation/index.phtml',
             'error/404'               => __DIR__ . '/../view/error/404.phtml',
             'error/index'             => __DIR__ . '/../view/error/index.phtml',
         ],
