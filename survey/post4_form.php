@@ -26,8 +26,8 @@ if (isset($_POST['statement21']) &&
 
 } else {
 	
-	$_SESSION['error_pre3'] = "Mandatory field(s) are missing, Please fill it again";
-	header("location: pre3_form.php"); // Redirecting to first page
+	$_SESSION['error_post3'] = "Mandatory field(s) are missing, Please fill it again";
+	header("location: post3_form.php"); // Redirecting to first page
 
 }
 ?>
@@ -55,11 +55,11 @@ if (isset($_POST['statement21']) &&
 		<hr>
 		
 		<?php											
-			echo '<span style = " font-family: Times New Roman; color: black; font-weight: bold; font-size: 21px;">Hello, ' . $_SESSION['first'] . '!</span>';
+			echo '<span style = " font-family: Times New Roman; color: black; font-weight: bold; font-size: 21px;">Welcome back, ' . $_SESSION['first'] . '!</span>';
 		?>
 		
 		<div id ="instructions">
-			<b>Pre-Test Instructions:</b>
+			<b>Post-Test Instructions:</b>
 		</div>
 		<p>
 			Below is a list of positive things that you might have in yourself, 
@@ -80,14 +80,14 @@ if (isset($_POST['statement21']) &&
 		
 		<span id="error">
 		<?php
-		if (!empty($_SESSION['error_pre4'])) {
-			echo $_SESSION['error_pre4'];
-			unset($_SESSION['error_pre4']);
+		if (!empty($_SESSION['error_post4'])) {
+			echo $_SESSION['error_post4'];
+			unset($_SESSION['error_post4']);
 		}
 		?>
 		</span>
 		
-		<form action="pre5_form.php" method="post">
+		<form action="post5_form.php" method="post">
 		<div class="form-group">
 			<label class="col-sm-4 control-label">I am involved in a religious group or activity.</label>
 				<div class="col-sm-8">

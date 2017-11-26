@@ -28,11 +28,11 @@ require 'DB.php';
 		<hr>
 		
 		<?php											
-			echo '<span style = " font-family: Times New Roman; color: black; font-weight: bold; font-size: 21px;">Hello, ' . $_SESSION['first'] . '!</span>';
+			echo '<span style = " font-family: Times New Roman; color: black; font-weight: bold; font-size: 21px;">Welcome back, ' . $_SESSION['first'] . '!</span>';
 		?>
 		
 		<div id ="instructions">
-			<b>Pre-Test Instructions:</b>
+			<b>Post-Test Instructions:</b>
 		</div>
 		<p>
 			Below is a list of positive things that you might have in yourself, 
@@ -61,7 +61,7 @@ require 'DB.php';
 		?>
 		</span>
 		
-		<form action="pre2_form.php" method="post">
+		<form action="post2_form.php" method="post">
 		<div class="form-group">
 			<label class="col-sm-4 control-label">I stand up for what I believe in.</label>
 				<div class="col-sm-8">

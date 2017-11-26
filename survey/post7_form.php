@@ -25,10 +25,10 @@ if (isset($_POST['statement51']) &&
 
 } else {
 	
-	$_SESSION['error_pre6'] = "Mandatory field(s) are missing, Please fill it again";
-	header("location: pre6_form.php");
+	$_SESSION['error_post6'] = "Mandatory field(s) are missing, Please fill it again";
+	header("location: post6_form.php");
 
 }
-header("Location: pre_final_form.php");
+header("Location: post_final_form.php");
 
 ?>

@@ -191,6 +191,7 @@ if(!empty($_POST['statement1'])&&
 		
 		$stmt = $conn->prepare($sql);
 
+		
 		$stmt->bindParam(':statement1', $_POST['statement1']);
 		$stmt->bindParam(':statement2', $_POST['statement2']);
 		$stmt->bindParam(':statement3', $_POST['statement3']);
