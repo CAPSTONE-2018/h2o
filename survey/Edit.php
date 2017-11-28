@@ -51,7 +51,7 @@ if(!empty($_POST['action'])) {
     if((int)$question['sort_order'] != $count ) {
       //get question to swap places
       $stmt = $conn->prepare('SELECT * FROM questions WHERE sort_order = ?');
-      $so = (int)$question['id'] + 1;
+      $so = (int)$question['sort_order'] + 1;
       $stmt->execute([$so]);
       $moveup = $stmt->fetch(PDO::FETCH_ASSOC);
 
