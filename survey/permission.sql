@@ -1,0 +1,1 @@
+GRANT ALL PRIVELEGES ON new_schema.* TO 'root'@localhost';

@@ -1,32 +1,34 @@
 <?php
 session_start();
 
-require 'DB.php';
+//pre7_form.php
+$myFilep6 = "datap6.txt";
+$linesp6 = file($myFilep6);
 
-// Checking sixth page values for empy, If it finds any blank field then redirect to sixth
-if (isset($_POST['statement51']) &&
-	isset($_POST['statement52']) &&
-	isset($_POST['statement53']) &&
-	isset($_POST['statement54']) &&
-	isset($_POST['statement55']) &&
-	isset($_POST['statement56']) &&
-	isset($_POST['statement57']) &&
-	isset($_POST['statement58'])){
+$poster = 1;
+
+foreach($linesp6 as $line)
+{
+
+	if (isset($_POST[trim($line)]))
+	{
+
+	}else{
+		$poster = 0;
+	}
+}
+
+if ($poster == 1){
 		
-
-		$_SESSION['statement51'] = $_POST['statement51'];
-		$_SESSION['statement52'] = $_POST['statement52'];
-		$_SESSION['statement53'] = $_POST['statement53'];
-		$_SESSION['statement54'] = $_POST['statement54'];
-		$_SESSION['statement55'] = $_POST['statement55'];
-		$_SESSION['statement56'] = $_POST['statement56'];
-		$_SESSION['statement57'] = $_POST['statement57'];
-		$_SESSION['statement58'] = $_POST['statement58'];
+		foreach($linesp2 as $line)
+		{
+			$_SESSION[$line] = $_POST[$line];
+		}
 
 } else {
 	
-	$_SESSION['error_post6'] = "Mandatory field(s) are missing, Please fill it again";
-	header("location: post6_form.php");
+	$_SESSION['error'] = "Mandatory field(s) are missing, Please fill it again";
+	header("location: post6_form.php"); // Redirecting to sixth page
 
 }
 header("Location: post_final_form.php");

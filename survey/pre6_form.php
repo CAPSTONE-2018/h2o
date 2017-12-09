@@ -1,33 +1,35 @@
 <?php
 session_start();
 // Checking fifth page values for empy, If it finds any blank field then redirect to fifth
-if (isset($_POST['statement41']) &&
-	isset($_POST['statement42']) &&
-	isset($_POST['statement43']) &&
-	isset($_POST['statement44']) &&
-	isset($_POST['statement45']) &&
-	isset($_POST['statement46']) &&
-	isset($_POST['statement47']) &&
-	isset($_POST['statement48']) &&
-	isset($_POST['statement49']) &&
-	isset($_POST['statement50'])){
+//pre6_form.php
+$myFile6 = "data6.txt";
+$myFilep5 = "datap5.txt";
+$lines6 = file($myFile6);
+$linesp5 = file($myFilep5);
+
+$poster = 1;
+
+foreach($linesp5 as $line)
+{
+
+	if (isset($_POST[trim($line)]))
+	{
+
+	}else{
+		$poster = 0;
+	}
+}
+
+if ($poster == 1){
 		
-
-		$_SESSION['statement41'] = $_POST['statement41'];
-		$_SESSION['statement42'] = $_POST['statement42'];
-		$_SESSION['statement43'] = $_POST['statement43'];
-		$_SESSION['statement44'] = $_POST['statement44'];
-		$_SESSION['statement45'] = $_POST['statement45'];
-		$_SESSION['statement46'] = $_POST['statement46'];
-		$_SESSION['statement47'] = $_POST['statement47'];
-		$_SESSION['statement48'] = $_POST['statement48'];
-		$_SESSION['statement49'] = $_POST['statement49'];
-		$_SESSION['statement50'] = $_POST['statement50'];
-
+		foreach($linesp2 as $line)
+		{
+			$_SESSION[$line] = $_POST[$line];
+		}
 } else {
 	
-	$_SESSION['error_pre5'] = "Mandatory field(s) are missing, Please fill it again";
-	header("location: pre5_form.php"); // Redirecting to first page
+	$_SESSION['error'] = "Mandatory field(s) are missing, Please fill it again";
+	header("location: pre5_form.php"); // Redirecting to fifth page
 
 }
 ?>
@@ -88,142 +90,33 @@ if (isset($_POST['statement41']) &&
 		</span>
 		
 		<form action="pre7_form.php" method="post">
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have support from adults other than my parents.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement51" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement51" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement51" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement51" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have a family that provides me with clear rules.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement52" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement52" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement52" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement52" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have parent(s) who urge me to do well in school.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement53" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement53" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement53" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement53" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have a family that gives me love and support.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement54" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement54" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement54" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement54" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have neighbors who help watch out for me.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement55" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement55" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement55" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement55" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have parent(s) who are good at talking with me about things.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement56" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement56" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement56" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement56" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have a school that enforces rules fairly.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement57" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement57" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement57" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement57" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I have a family that knows where I am and what I am doing.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement58" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement58" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement58" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement58" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
+		<?php
+		
+		foreach($lines6 as $line)
+		{
+			$var = explode(':', $line, 2);
+			$_SESSION['total'] = $_SESSION['total'] + 1;
+
+			echo '<div class="form-group">
+					<label class="col-sm-4 control-label">' . $var[0] . '</label>
+						<div class="col-sm-8">
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio1" value="1"> Not at All or Rarely </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio2" value="2"> Somewhat or Sometimes </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio3" value="3"> Very or Often </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio4" value="4"> Extremely or Almost Aways</label>
+							</div>
+						</div>
+				</div>';
+				
+		}
+		?>
 		<input type="submit" value="Next" />
 		</form>
 		

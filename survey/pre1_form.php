@@ -1,9 +1,11 @@
 <?php
 session_start();
 
-require 'DB.php';
+//pre1_form.php
+$myFile1 = "data1.txt";
+$lines1 = file($myFile1);
 
-
+$_SESSION['total'] = 0;
 ?>
 <html>
 	<head>
@@ -62,176 +64,33 @@ require 'DB.php';
 		</span>
 		
 		<form action="pre2_form.php" method="post">
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I stand up for what I believe in.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement1" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement1" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement1" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement1" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I feel in control of my life and future.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement2" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement2" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement2" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement2" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-		<label class="col-sm-4 control-label">I feel good about myself.</label>
-			<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement3" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement3" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement3" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement3" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I avoid things that are dangerous or unhealthy.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement4" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement4" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement4" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement4" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I enjoy reading or being read to.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement5" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement5" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement5" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement5" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I build friendships with other people.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement6" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement6" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement6" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement6" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I care about school. </label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement7" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement7" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement7" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement7" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I do my homework.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement8" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement8" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement8" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement8" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I stay away from tobacco, alcohol, & other drugs.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement9" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement9" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement9" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement9" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I enjoy learning.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement10" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement10" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement10" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement10" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
+		<?php
+		
+		foreach($lines1 as $line)
+		{
+			$var = explode(':', $line, 2);
+			$_SESSION['total'] = $_SESSION['total'] + 1;
+
+			echo '<div class="form-group">
+					<label class="col-sm-4 control-label">' . $var[0] . '</label>
+						<div class="col-sm-8">
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio1" value="1"> Not at All or Rarely </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio2" value="2"> Somewhat or Sometimes </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio3" value="3"> Very or Often </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio4" value="4"> Extremely or Almost Aways</label>
+							</div>
+						</div>
+				</div>';
+				
+		}
+		?>
 		<input type="submit" value="Next" />
 		</form>
 		

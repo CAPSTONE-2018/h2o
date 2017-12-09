@@ -1,33 +1,36 @@
 <?php
 session_start();
 // Checking second page values for empy, If it finds any blank field then redirect to second
-if (isset($_POST['statement11']) &&
-	isset($_POST['statement12']) &&
-	isset($_POST['statement13']) &&
-	isset($_POST['statement14']) &&
-	isset($_POST['statement15']) &&
-	isset($_POST['statement16']) &&
-	isset($_POST['statement17']) &&
-	isset($_POST['statement18']) &&
-	isset($_POST['statement19']) &&
-	isset($_POST['statement20'])){
-		
+//pre3_form.php
+$myFile3 = "data3.txt";
+$myFilep2 = "datap2.txt";
+$lines3 = file($myFile3);
+$linesp2 = file($myFilep2);
 
-		$_SESSION['statement11'] = $_POST['statement11'];
-		$_SESSION['statement12'] = $_POST['statement12'];
-		$_SESSION['statement13'] = $_POST['statement13'];
-		$_SESSION['statement14'] = $_POST['statement14'];
-		$_SESSION['statement15'] = $_POST['statement15'];
-		$_SESSION['statement16'] = $_POST['statement16'];
-		$_SESSION['statement17'] = $_POST['statement17'];
-		$_SESSION['statement18'] = $_POST['statement18'];
-		$_SESSION['statement19'] = $_POST['statement19'];
-		$_SESSION['statement20'] = $_POST['statement20'];
+$poster = 1;
+
+foreach($linesp2 as $line)
+{
+
+	if (isset($_POST[trim($line)]))
+	{
+
+	}else{
+		$poster = 0;
+	}
+}
+
+if ($poster == 1){
+		
+		foreach($linesp2 as $line)
+		{
+			$_SESSION[$line] = $_POST[$line];
+		}
 
 } else {
 	
-	$_SESSION['error_pre2'] = "Mandatory field(s) are missing, Please fill it again";
-	header("location: pre2_form.php"); // Redirecting to first page
+	$_SESSION['error'] = "Mandatory field(s) are missing, Please fill it again";
+	header("location: pre2_form.php"); // Redirecting to second page
 
 }
 ?>
@@ -88,176 +91,33 @@ if (isset($_POST['statement11']) &&
 		</span>
 		
 		<form action="pre4_form.php" method="post">
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I feel valued and appreciated by others.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement21" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement21" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement21" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement21" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I take responsibility for what I do.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement22" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement22" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement22" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement22" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I tell the truth even when it is not easy.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement23" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement23" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement23" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement23" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I accept people who are different from me.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement24" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement24" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement24" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement24" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I feel safe at school.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement25" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement25" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement25" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement25" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I am actively engaged in learning new things.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement26" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement26" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement26" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement26" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I am developing a sense of purpose in my life.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement27" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement27" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement27" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement27" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I am encouraged to try things that might be good for me.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement28" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement28" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement28" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement28" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I am included in family tasks and decisions.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement29" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement29" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement29" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement29" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
-		<div class="form-group">
-			<label class="col-sm-4 control-label">I am helping to make my community a better place.</label>
-				<div class="col-sm-8">
-					<div class="radio">
-						<label> <input type="radio" name="statement30" id="Radio1" value="1"> Not at All or Rarely </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement30" id="Radio2" value="2"> Somewhat or Sometimes </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement30" id="Radio3" value="3"> Very or Often </label>
-					</div>
-					<div class="radio">
-						<label> <input type="radio" name="statement30" id="Radio4" value="4"> Extremely or Almost Aways</label>
-					</div>
-				</div>
-		</div>
+		<?php
+		
+		foreach($lines3 as $line)
+		{
+			$var = explode(':', $line, 2);
+			$_SESSION['total'] = $_SESSION['total'] + 1;
+
+			echo '<div class="form-group">
+					<label class="col-sm-4 control-label">' . $var[0] . '</label>
+						<div class="col-sm-8">
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio1" value="1"> Not at All or Rarely </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio2" value="2"> Somewhat or Sometimes </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio3" value="3"> Very or Often </label>
+							</div>
+							<div class="radio">
+								<label> <input type="radio" name="'. trim($var[1]) . '" id="Radio4" value="4"> Extremely or Almost Aways</label>
+							</div>
+						</div>
+				</div>';
+				
+		}
+		?>
 		<input type="submit" value="Next" />
 		</form>
 		
