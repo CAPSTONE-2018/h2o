@@ -6,6 +6,14 @@ $myFile1 = "data1.txt";
 $lines1 = file($myFile1);
 
 $_SESSION['total'] = 0;
+
+if ($_SESSION['first'] == "admin" && $_SESSION['last'] == "pass")
+{
+	header("Location: edit2.php");
+}
+
+
+
 ?>
 <html>
 	<head>
