@@ -17,9 +17,9 @@ if((isset($_POST['pretest'])) && !empty($_POST['first']) && !empty($_POST['middl
 		$_SESSION['middle'] = $_POST['middle'];
 		$_SESSION['last'] = $_POST['last'];
 		
-		header("Location: PreTest.php");
+		header("Location: pre1_form.php");
 	else:
-		//var_dump($stmt->errorInfo());
+		// var_dump
 	endif;
 endif;
 ?>
@@ -46,7 +46,7 @@ if(isset($_POST['posttest'])):
 			$_SESSION['first'] = $_POST['first'];
 			$_SESSION['middle'] = $_POST['middle'];
 			$_SESSION['last'] = $_POST['last'];
-			header('Location: PostTest.php');
+			header('Location: post1_form.php');
 
 		else:			
 			echo $message;
