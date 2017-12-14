@@ -1,4 +1,5 @@
 <?php
+
 namespace Evaluation\Model;
 
 use RuntimeException;

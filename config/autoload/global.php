@@ -12,13 +12,8 @@
  */
 
 return [
-  'db' => array(
-     'driver'         => 'Pdo',
-     'dsn'            => 'mysql:dbname=cs440_h2o;host=localhost',
-  ),
-  'service_manager' => array(
-     'factories' => array(
-        'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
-     ),
-  ),
+    'db' => [
+        'driver' => 'Pdo',
+        'dsn'    => sprintf('sqlite:%s/data/zftutorial.db', realpath(getcwd())),
+    ],
 ];

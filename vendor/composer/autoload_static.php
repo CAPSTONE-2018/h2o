@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita7e97d475305875da16d4a8597e744fb
+class ComposerStaticInitea9d1f7160eff2daf82398b66a967e0d
 {
     public static $files = array (
         '34901568a1e26d13dd475cb2c85e0284' => __DIR__ . '/..' . '/zendframework/zend-form/autoload/formElementManagerPolyfill.php',
@@ -23,6 +23,7 @@ class ComposerStaticInita7e97d475305875da16d4a8597e744fb
             'Zend\\ModuleManager\\' => 19,
             'Zend\\Loader\\' => 12,
             'Zend\\InputFilter\\' => 17,
+            'Zend\\I18n\\' => 10,
             'Zend\\Hydrator\\' => 14,
             'Zend\\Http\\' => 10,
             'Zend\\Form\\' => 10,
@@ -32,11 +33,8 @@ class ComposerStaticInita7e97d475305875da16d4a8597e744fb
             'Zend\\Db\\' => 8,
             'Zend\\Config\\' => 12,
             'Zend\\ComponentInstaller\\' => 24,
+            'Zend\\Code\\' => 10,
             'ZF\\DevelopmentMode\\' => 19,
-        ),
-        'S' => 
-        array (
-            'Survey\\' => 7,
         ),
         'P' => 
         array (
@@ -54,6 +52,7 @@ class ComposerStaticInita7e97d475305875da16d4a8597e744fb
         array (
             'Application\\' => 12,
             'ApplicationTest\\' => 16,
+            'Album\\' => 6,
         ),
     );
 
@@ -98,6 +97,10 @@ class ComposerStaticInita7e97d475305875da16d4a8597e744fb
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-inputfilter/src',
         ),
+        'Zend\\I18n\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-i18n/src',
+        ),
         'Zend\\Hydrator\\' => 
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-hydrator/src',
@@ -134,13 +137,13 @@ class ComposerStaticInita7e97d475305875da16d4a8597e744fb
         array (
             0 => __DIR__ . '/..' . '/zendframework/zend-component-installer/src',
         ),
+        'Zend\\Code\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/zendframework/zend-code/src',
+        ),
         'ZF\\DevelopmentMode\\' => 
         array (
             0 => __DIR__ . '/..' . '/zfcampus/zf-development-mode/src',
-        ),
-        'Survey\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/module/Survey/src',
         ),
         'Psr\\Container\\' => 
         array (
@@ -162,13 +165,17 @@ class ComposerStaticInita7e97d475305875da16d4a8597e744fb
         array (
             0 => __DIR__ . '/../..' . '/module/Application/test',
         ),
+        'Album\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/module/Album/src',
+        ),
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita7e97d475305875da16d4a8597e744fb::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita7e97d475305875da16d4a8597e744fb::$prefixDirsPsr4;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitea9d1f7160eff2daf82398b66a967e0d::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitea9d1f7160eff2daf82398b66a967e0d::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }

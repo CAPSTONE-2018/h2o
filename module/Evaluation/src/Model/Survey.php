@@ -1,4 +1,5 @@
 <?php
+
 namespace Evaluation\Model;
 
 class Survey
@@ -9,53 +10,17 @@ class Survey
 	public $surveyFor;
 	public $surveyType;
 	public $id;
-	public function __construct($dbname)
-	{
-		$this->surveyBy = 'temp';
-		$this->surveyFor = 'temp';
-		$this->surveyType = 'temp';
-		$this->dateTaken = 'temp';
-		$this->id = 0;
-	}
 
   public function exchangeArray(array $data)
   {
-    $this->answers     = !empty($data['answers']) ? $data['answers'] : null;
-    $this->dateTaken     = !empty($data['dateTaken']) ? $data['dateTaken'] : null;
-    $this->surveyBy = !empty($data['surveyby_u_id']) ? $data['surveyby_u_id'] : null;
+    !empty($data['answers']) ? $this->parseAnswers($data['answers']) : null;
+    $this->dateTaken  = !empty($data['date_taken']) ? $data['date_taken'] : null;
+    $this->surveyBy   = !empty($data['surveyby_u_id']) ? $data['surveyby_u_id'] : null;
     $this->surveyFor  = !empty($data['surveyfor_u_id']) ? $data['surveyfor_u_id'] : null;
-    $this->surveysType = !empty($data['surveysType']) ? $data['surveysType'] : null;
-    $this->id     = !empty($data['id']) ? $data['id'] : null;
+    $this->surveyType = !empty($data['sur_type']) ? $data['sur_type'] : null;
+    $this->id         = !empty($data['id']) ? $data['id'] : null;
   }
 
-	public static function load($id)
-	{
-		$s=new Survey();
-		$db=new Database("cs440_h2o");
-		$r=$db->getDataFromI("h2o_answers",$id,"id");
-		$s->parseAnswers($r["answers"]);
-		$s->surveyBy = $r["surveyby_u_id"];
-		$s->surveyFor = $r["surveyfor_u_id"];
-		$s->surveyType = $r["sur_type"];
-		$s->dateTaken = $r["date_taken"];
-		$s->id = $r["id"];
-
-
-		$db->close();
-		return $s;
-	}
-	public function create()
-	{
-		$db=new Database("cs440_h2o");
-		$sql = sprintf("INSERT INTO h2o_answers (surveyby_u_id, surveyfor_u_id, sur_type, answers, date_taken) VALUES ('%s','%s','%s','%s','%s');",
-						$this->surveyBy,
-						$this->surveyFor,
-						$this->surveyType,
-						$this->concatenateAnswers(),
-						$this->dateTaken);
-		mysqli_query($db->con, $sql);
-		return mysqli_insert_id($db->con);
-	}
 	public function parseAnswers($rawData)
 	{
 		$this->answers=explode(',',$rawData);
@@ -66,7 +31,7 @@ class Survey
 	}
 	public function getCategoryRanks()
 	{
-		$ranks=array(0,0);
+		$ranks=[0,0,0,0,0,0,0,0,0,0,0,0];
 		$i=0;
 		$counter = 0;
 		foreach($this->answers as $a)
@@ -140,4 +105,3 @@ class Survey
 		return $ranks;
 	}
 }
-?>

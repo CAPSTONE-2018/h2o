@@ -1,4 +1,5 @@
 <?php
+
 namespace Evaluation\Model;
 
 use RuntimeException;
@@ -32,4 +33,32 @@ class SurveyTable
 
         return $row;
     }
+    
+    public function saveSurvey(Survey $survey)
+    {
+        $data = [
+            'surveyby_u_id'  => $survey->surveyBy,
+            'surveyfor_u_id' => $survey->surveyFor,
+            'sur_type' => $survey->surveyType,
+            'answers' => $survey->answers,
+            'date_taken' => $survey->dateTaken,
+        ];
+
+        $id = (int) $survey->id;
+
+        if ($id === 0) {
+            $this->tableGateway->insert($data);
+            return;
+        }
+
+        if (! $this->getSurvey($id)) {
+            throw new RuntimeException(sprintf(
+                'Cannot update album with identifier %d; does not exist',
+                $id
+            ));
+        }
+
+        $this->tableGateway->update($data, ['id' => $id]);
+    }
+
 }
