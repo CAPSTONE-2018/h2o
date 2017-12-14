@@ -35,11 +35,11 @@ class EvaluationController extends AbstractActionController
 
         $surveyCount = $surveysResultSet->count();
         
-	    //Averages Categories and Pulls names
-		$u1S = $user1Survey->getCategoryRanks();
-		$u2S = $user2Survey->getCategoryRanks();
-		$u1N = $this->userTable->getUsername($user1Survey->surveyFor);
-		$u2N = $this->userTable->getUsername($user2Survey->surveyFor);
+	      //Averages Categories and Pulls names
+		    $u1S = $user1Survey->getCategoryRanks();
+		    $u2S = $user2Survey->getCategoryRanks();
+		    $u1N = $this->userTable->getUsername($user1Survey->surveyFor);
+		    $u2N = $this->userTable->getUsername($user2Survey->surveyFor);
 
         $userCount = $this->userTable->fetchAll()->count();
         
@@ -51,5 +51,25 @@ class EvaluationController extends AbstractActionController
             'last' => $user1Survey->id,
             'userCount' => $userCount,
         ]);
+    }
+      
+    public function loginAction()
+    {
+    }
+
+    public function logoutAction()
+    {
+    }
+
+    public function surveyAction()
+    {
+    }
+
+    public function chartAction()
+    {
+    }
+
+    public function adduserAction()
+    {
     }
 }
