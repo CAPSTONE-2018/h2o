@@ -1,0 +1,15 @@
+Help Notes
+
+Edit page: the current working edit page is edit2.php. To get to the edit screen, while on the main page put "admin" as the first
+name, "pass" as the last name, and anything for the middle initial. The block of code that is controlling this is at the top
+of pre1_form.php. Currently, the remove option must match the question EXACTLY. 
+
+Survey notes: the survey is currently split into six pages with most pages having ten questions. There are currently 58 total
+questions in the survey. When the next button is clicked at the bottom of the page, the data is sent to the next page. At the next
+page the data from the previous page is checked to make sure all of the questions were answered, and if they were not the user gets
+redirected to the previous page with a message stating they have not filled out all of the questions. The data is posted to the 
+database in the pre_final_form.php and post_final_form.php files which run at the end of the survey, but the user never sees these 
+pages.
+
+Zend Framework: currently the survey does not run off of zend framework, but a base has been laid out if you with to use. These
+files can be found in a separate branch.
