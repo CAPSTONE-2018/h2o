@@ -1,0 +1,40 @@
+.surveyPage {
+	color: black;
+	background-color: white;
+	padding-top: 25px;
+	padding-right: 10px;
+	padding-bottom: 60px;
+	padding-left: 10px;
+	width: 600px;
+	margin-right: auto;
+	margin-left: auto;
+	border-radius: 5px;
+}
+
+h1 {
+	color: rgb(48,109,188);
+}
+
+#intro {
+	margin-bottom: 25px;
+}
+
+form {
+	text-align: left;
+}
+form>div {
+	margin-bottom: 20px;
+}
+button[type="submit"] {
+	width: 125px;
+	height: 50px;
+	background-color: rgb(27,60,104);;
+	font-size: 15px;
+	font-family: "Open Sans", Sans-serif;
+	border: 0px;
+	border-radius: 4px;
+	outline: none;
+	cursor: pointer;
+	color: white;
+	float: left;
+}

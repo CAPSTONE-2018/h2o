@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">		
+		<title>H2O</title>
+		<link rel="stylesheet" type="text/css" href="CSS/survey.css" />
+		<link rel="stylesheet" type="text/css" href="css/survey.css" />
+
+	</head>
+	<body>
+		<div id="wrapper-header">
+			<div id="header">
+				<img id="logo" src="http://hearthavenoutreach.org/wp-content/uploads/2017/08/H2O-logo-PNG-clear-background-white-600.png" alt="logo" />
+			</div>
+		</div>
+		<div id="error">
+			<div><p>There was an error with your submission:</p></div>
+			<div id="eSchool">&#x1F6AB; School Name cannot be blank.</div>
+			<div id="eGrade">&#x1F6AB; Grade Level cannot be blank.</div>
+			<div id="eAge">&#x1F6AB; Age cannot be blank or must be a number.</div>
+			<div id="eGender">&#x1F6AB; Select a Gender.</div>
+		</div>
+		<form action="pre_page1.php" method="post" id="surveyForm">
+			<p>Welcome! Please enter all fields.</p>
+			<p>Pre-Survey Login</p>
+			<input type="text" name="school" id="school" placeholder="School Name*">
+			<input type="text" name="grade" id="grade" placeholder="Grade Level*">
+			<input type="text" name="age" id="age" placeholder="Age*">
+			
+			<p>Gender:</p>
+			<input type="radio" name="gender" value="male" id="male">
+			<label for="male">Male</label>
+			
+			<input type="radio" name="gender" value="female" id="female">
+			<label for="female">Female</label>
+			
+			<input type="radio" name="gender" value="other" id="other">
+			<label for="other">Other</label>
+
+			<button type="button" name="pretest">PreTest</button>
+		</form>
+		<hr>
+		
+		<form action="searchID.php" method="post">
+			<p>Post-Survey Login</p>
+			<input type="text" name="userID" id="userID" placeholder="User ID*" maxlength="4">
+			<button type="button" name="posttest">PostTest</button>	
+		</form>
+		
+		<!-- JS pre form validation -->
+		<script type="text/javascript" src="scripts/presurvey.js" defer></script>
+		<!-- JS post form validation -->
+		<script type="text/javascript" src="scripts/postsurvey.js"></script>
+	</body>
+</html>
+

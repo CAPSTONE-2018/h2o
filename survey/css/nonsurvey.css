@@ -1,0 +1,29 @@
+/* This section is for the button in the error page */
+body {
+	background-color: rgb(48,109,188);
+	text-align: center;
+	color: white;
+	font-family: Open Sans , Sans-serif;
+}
+form {
+	margin-right: auto;
+	margin-left: auto;
+}
+button[type="submit"] {
+	width: 125px;
+	height: 50px;
+	background-color: white;
+	color: black;
+	font-size: 15px;
+	font-family: "Open Sans", Sans-serif;
+	border: 0px;
+	border-radius: 4px;
+	cursor: pointer;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+button[type="submit"]:hover {
+	background-color: rgb(27,60,104);
+	color: white;
+}

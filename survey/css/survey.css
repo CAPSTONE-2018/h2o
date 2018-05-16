@@ -1,0 +1,99 @@
+body {
+	background-color: rgb(48,109,188);
+	text-align: center;
+	color: white;
+	font-family: Open Sans , Sans-serif;
+}
+
+#wrapper-header {
+	margin: 40px;
+}
+
+#header {
+	text-align: center;
+	width: auto;
+}
+
+#logo {
+	width: 100%;
+	max-width: 500px;
+	height: auto;
+}
+
+input[type="text"] {
+	width: 300px;
+	height: 30px;
+	padding: 10px;
+	margin: 20px auto;
+	font-size: 15px;
+	font-family: "Open Sans", Sans-serif;
+	color: white;
+	border: 1px solid white;
+	border-radius: 4px;
+	background-color: rgba(0,0,0,0);
+	outline: none;
+	display: block;
+}
+
+input[type="text"]:focus {
+	border: 1px solid rgb(27,60,104);
+	-webkit-transition: 0.3s;
+	transition: 0.3s;
+	box-shadow: 0px 0px 8px rgba(0,0,0,0.7);
+}
+
+::placeholder {
+	opacity: .5;
+	color: white;
+}
+
+#lastName {
+	margin-bottom: 60px;
+}
+
+button[type="button"] {
+	width: 125px;
+	height: 50px;
+	background-color: white;
+	font-size: 15px;
+	font-family: "Open Sans", Sans-serif;
+	border: 0px;
+	border-radius: 4px;
+	cursor: pointer;
+	display: block;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+button[type="button"]:hover {
+	background-color: rgb(27,60,104);
+	color: white;
+}
+
+button[name="pretest"] {
+	margin-top: 20px;
+}
+
+form {
+	margin: 20px;
+}
+hr {
+	width: 500px;
+	margin-right: auto;
+	margin-left: auto;
+}
+/* Error */
+#error {
+	border: 1px solid red;
+	border-radius: 4px;
+	font-size: 15px;
+	width: 350px;
+	margin-right: auto;
+	margin-left: auto;
+	padding: 10px;
+	background-color: rgba(250, 0, 0, 0.5)
+}
+
+#error>div {
+	text-align: left;
+}

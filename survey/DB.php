@@ -1,14 +1,11 @@
 <?php
-//Establish connection
-$server = 'localhost';
-$username = 'h2o_user';
-$password = 'dbuser';
-$database = 'h2o_survey';
-
-try{
-	$conn = new PDO("mysql:host=$server; dbname=$database;", $username, $password);
-} catch(PDOException $e){
-	die( "Connection failed: " . $e->getMessage());
+$host="localhost";
+$user="kck15911";
+$pass="";
+$db="Survey";
+$connection=mysqli_connect($host,$user,$pass,$db);
+if($connection->connect_error){
+    die("connection failed:". $conn->connect_error);
 }
 
-
+?>
