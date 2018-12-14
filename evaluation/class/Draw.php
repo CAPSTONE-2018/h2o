@@ -29,6 +29,8 @@ class Draw
 		$rate=(self::$squareSize/2)/5;
 		return (5-$rank)*$rate;
 	}
+	
+
 	public static function createImage($fileName,$selEval,$adminEval,$cats)
 	{
 		//unset($selEval[2]);

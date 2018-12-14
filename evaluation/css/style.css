@@ -18,6 +18,26 @@ textarea {
   font-family: 'Open Sans';
 }
 
+.error-text{
+		color:darkred;
+		font-weight:bold;
+		border:solid 2px red;
+		background-color:lightpink;
+		padding:5px;
+		display:block;
+		border-radius:5px;
+		
+}
+.success-text{
+	color:green;
+		font-weight:bold;
+		border:solid 2px darkgreen;
+		background-color:lightgreen;
+		padding:5px;
+		display:block;
+		border-radius:5px;
+}
+
 .dropdown .dropdown-menu {
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
@@ -50,7 +70,26 @@ textarea {
 }
 
 
-
+.dot {
+	border:solid 1px black;
+    height: 15px;
+    width: 15px;
+    margin-top:10px;
+	margin-left:5px;
+	margin-right:5px;
+    border-radius: 5px;
+    display: inline-block;
+}
+.dot2{
+	border:solid 1px gray;
+    height: 10px;
+    width: 10px;
+    margin-top:10px;
+	margin-left:5px;
+	margin-right:5px;
+    border-radius: 10px;
+    display: inline-block;
+}
 
 
 

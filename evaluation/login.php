@@ -8,25 +8,26 @@
  * @version		1.0
  * @see			documentation.html
  */
-
 // Check if POST was sent
 if($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 	// If the username and password fiels not empty, check for valid credentials
 	if($_POST['username'] != "" && $_POST['password'] != "") {
-	
 		// Credentials passed through Whirpool encryption algorithm
 		if($class->checkCredentials($_POST['username'], $_POST['password']) == true) {
+			echo "Valid!!";
 			$class->setUser($_POST['username']);
 			
 			// This redirects back to the index.php, once credentials are validated
 			// The "Location:" can be changed to any desired redirect page, or you place any scripts below this statement to execute
+			
 			header('Location: index.php');
 		} 
 		
 		// Display invalid credential message
 		else {
-			$message = "Incorrect username or password."; $type = "danger";
+			$message = "Incorrect username or password."; 
+			$type = "danger";
 		}
 	} 
 	
@@ -65,45 +66,38 @@ if(isset($_GET['action']) && $_GET['action'] == "logout") {
 </head>
 <body>
 	<div class="navbar navbar-fixed-top">
-	
-	<div class="navbar-inner">
-		
-		<div class="container">
-			
-			<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</a>
-			
-			<a class="brand" href="index.html">
-				H20 Employee Evaluation	System			
-			</a>		
-			
-			<div class="nav-collapse">
-				<ul class="nav pull-right">
-					
-					<li class="">						
-						<a href="#" class="">
-							Useful link here?
-						</a>
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</a>
+				<a class="brand" href="index.html">
+					H20 Employee Evaluation	System			
+				</a>		
+				<div class="nav-collapse">
+					<ul class="nav pull-right">
 						
-					</li>
-				</ul>
-					
-				</div><!--/.nav-collapse -->	
-		
-			</div> <!-- /container -->
+						<li class="">						
+							
+							
+						</li>
+					</ul>
+						
+					</div><!--/.nav-collapse -->	
 			
-		</div> <!-- /navbar-inner -->
-		
-	</div> <!-- /navbar -->
+				</div> <!-- /container -->
+				
+			</div> <!-- /navbar-inner -->
+			
+		</div> <!-- /navbar -->
 
 	<div class="account-container">
 		
 		<div class="content clearfix">
 			
-			<form action="#" method="post">
+			<form action="login.php" method="post">
 			
 				<h1>Member Login</h1>		
 				
@@ -120,12 +114,12 @@ if(isset($_GET['action']) && $_GET['action'] == "logout") {
 					
 					<div class="field">
 						<label for="username">Username</label>
-						<input type="text" id="username" name="username" value="" placeholder="Username" class="login username-field" />
+						<input type="text" id="username" name="username" placeholder="Username" class="login username-field" />
 					</div> <!-- /field -->
 					
 					<div class="field">
 						<label for="password">Password:</label>
-						<input type="password" id="password" name="password" value="" placeholder="Password" class="login password-field"/>
+						<input type="password" id="password" name="password" placeholder="Password" class="login password-field"/>
 					</div> <!-- /password -->
 					
 				</div> <!-- /login-fields -->
@@ -137,7 +131,7 @@ if(isset($_GET['action']) && $_GET['action'] == "logout") {
 						<label class="choice" for="Field">Keep me signed in</label>
 					</span>
 										
-					<button class="button btn btn-success btn-large">Sign In</button>
+					<input type="submit" class="button btn btn-success btn-large" value="Sign In" />
 					
 				</div> <!-- .actions -->
 				
@@ -151,6 +145,20 @@ if(isset($_GET['action']) && $_GET['action'] == "logout") {
 </div>
 	<script src="js/jquery-1.7.2.min.js"></script>
 	<script src="js/bootstrap.js"></script>
-	<script src="js/signin.js"></script>
+	<script>
+	$(function () {
+	
+		jQuery.support.placeholder = false;
+		test = document.createElement('input');
+		if('placeholder' in test) jQuery.support.placeholder = true;
+		
+		if (!$.support.placeholder) {
+			
+			$('.field').find ('label').show ();
+			
+		}
+	
+	});
+	</script>
 </body>
 </html>

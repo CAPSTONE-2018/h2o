@@ -33,7 +33,9 @@ body{ background: url(../../img/body-bg.png); color:#838383; font: 13px/1.7em 'O
 .login-fields label {
 	display: none;
 }
-
+.login{
+	min-height:40px;
+}
 .login-fields input {
 	font-family: 'Open Sans';
 	font-size: 13px;
