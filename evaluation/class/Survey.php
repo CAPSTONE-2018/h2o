@@ -1,59 +1,57 @@
 <?php
 include_once  'class//db.php';
+include_once 'class//config.php';
+
 class Survey
 {
-	public $answers;
-	public $dateTaken;
-	public $surveyBy;
-	public $surveyFor;
-	public $surveyType;
 	public $id;
+	public $date_taken;
+	public $survey_type;
+	public $survey_by;
+	public $survey_for;
+	public $answers;
 
-	public function __construct($dbname) 
+	public function __construct($id_) 
 	{
-		$this->surveyBy = 'temp';
-		$this->surveyFor = 'temp';
-		$this->surveyType = 'temp';
-		$this->dateTaken = 'temp';
-		$this->id = 0;
+		if ($id_ != NULL){
+			$db = new Database(DB_Name);
+			$dataRow = $db->SQL_GET(DB_Survey_Table, 'id', $id_);
+			
+			$this->id = $id_;
+			$this->date_taken = $dataRow['date_taken'];
+			$this->survey_type = $dataRow['survey_type'];
+			$this->survey_by = $dataRow['survey_by'];
+			$this->survey_for = $dataRow['survey_for'];
+			$this->answers= $this->parseAnswers($dataRow['answers']);
+			
+			$db->close();
+		}else{
+			$this->id = -1;
+			$this->date_taken = 'NEVER!';
+			$this->survey_type = '';
+			$this->survey_by = '';
+			$this->survey_for = '';
+			//$this->answers= $this->parseAnswers("Empty,pls,fix,parsing");
+		}
 	}
-	public static function load($id)
-	{	
-		$s=new Survey();
-		$db=new Database("cs440_h2o");
-		$r=$db->getDataFromI("h2o_answers",$id,"id");                       
-		$s->parseAnswers($r["answers"]);
-		$s->surveyBy = $r["surveyby_u_id"];
-		$s->surveyFor = $r["surveyfor_u_id"];
-		$s->surveyType = $r["sur_type"];
-		$s->dateTaken = $r["date_taken"];
-		$s->id = $r["id"];
-		
-		
-		$db->close();
-		return $s;
-	}
-	public function create()
-	{
-		$db=new Database("cs440_h2o");
-		$sql = sprintf("INSERT INTO h2o_answers (surveyby_u_id, surveyfor_u_id, sur_type, answers, date_taken) VALUES ('%s','%s','%s','%s','%s');",
-						$this->surveyBy,
-						$this->surveyFor,
-						$this->surveyType,
-						$this->concatenateAnswers(),
-						$this->dateTaken);
-		mysqli_query($db->con, $sql);
+	public function saveChanges(){
+		$db = new Database(DB_NAME);
+		// removes ` from any comments so it doesnt fuck up our data. since we use ` as delimiter
+		$ans = implode('`',str_replace('`', ',', $this->answers));
 
-		return mysqli_insert_id($db->con);
+		$result = $db->sp_update_survey($this->id, $ans);
+		$db->refreshConnection();
+		return $result;
 	}
 	public function parseAnswers($rawData)
 	{
-		$this->answers=explode(',',$rawData);
+		return explode('`',$rawData);
 	}
 	public function concatenateAnswers()
 	{
-		return implode(',',$this->answers);
+		return implode('`',$this->answers);
 	}
+	
 	public function getCategoryRanks()
 	{
 		$ranks=array(0,0);

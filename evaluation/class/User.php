@@ -2,59 +2,49 @@
 include_once 'class//db.php';
 include_once 'class//Survey.php';
 include 'class//Draw.php';
+include_once 'class//config.php';
 
-class User
-{
+class User{
+	public $id;
+	public $username;
+	public $passwd;
+	public $role;
+	public $self_survey_id;
+	public $admin_survey_id;
 	
-	public $ID;
-	public $Role;
-	public $Name;
-	public $selfSurvey;
-	public $adminSurvey;
-	public $uid;
-	
-	public function __construct($dbname) 
-	{
-		$this->selfSurvey= -5;
-		$this->adminSurvey= -5;//todo fic
+	public function __construct($userName) {
+		//try to lookup our user in db
+		
+		
+		if ($userName != NULL){
+			$db = new Database(DB_Name);
+			$dataRow = $db->SQL_GET(DB_Users_Table, 'username', $userName);
+			$this->id = $dataRow['id'];
+			$this->username = $dataRow['username'];
+			$this->passwd = $dataRow['passwd'];
+			$this->role = $dataRow['role'];
+			$this->self_survey_id = $dataRow['self_survey_id'];
+			$this->admin_survey_id = $dataRow['admin_survey_id'];
+			$db->close();
+		}else{
+			$this->id = -1;
+			$this->username = 'EMPTY USER';
+			$this->passwd = '';
+			$this->role = '';
+			$this->self_survey_id = -1;
+			$this->admin_survey_id = -1;
+		}
 	}
-	public static function load($id)
-	{
-		$u=new User();
-		$db=new Database("cs440_h2o ");
-		$r=$db->getData("h2o_users",$id);
-		//echo "EAFS";
-		$u->selfSurvey=Survey::load($r["userSurvey"]);
-		$u->adminSurvey=Survey::load($r["adminSurvey"]);
-		$u->ID=Survey::load($r["ID"]);
-		$u->uid=$id;
-		$db->close();
-		return $u;
-	}
+	/*
 	
 	public static function delete($id)
 	{
 		$db=new Database("cs440_h20");
 		mysqli_query($db->con, sprintf("DELETE from h2o_users where id=%s", $id));
 	}
+
 	
-	public static function loadF($userN)
-	{
-		$u=new User();
-		
-		$db=new Database('cs440_h2o');
-		$r=$db->getDataFromF("h2o_users",$userN,"username");
-		$r["userSurvey"];
-		$u->selfSurvey=$r["userSurvey"];
-		$u->adminSurvey=$r["adminSurvey"];
-		$u->ID=$r["id"];
-		$u->uid=$r["id"];
-		$u->Name=$r["username"];
-		$db->close();
-		//echo "This user survey is ".$u->selfSurvey.". This admin survey is ".$u->adminSurvey;
-		return $u;
-		//actualy get data
-	}
+	redo this
 	public function save()
 	{
 		$db=new Database("cs440_h2o");
@@ -64,31 +54,33 @@ class User
 		$db->updateData("h2o_users",$this->ID, "adminSurvey", $this->adminSurvey,'i');
 		$db->close();
 	}
+	*/
 	public function draw($fileName)
 	{ 
 		$cats = array("COMMUNICATIONS","COOPERATION","COST CONSCIOUSNESS","DEPENDABILITY","INITIATIVE","JOB KNOWLEDGE","JUDGMENT","PLANNING & ORGANIZATION"
 		,"PROBLEM SOLVING","QUALITY","QUANTITY","USE OF TECHNOLOGY");
 		
-		if($this->selfSurvey>0)
+		if($this->self_survey_id>0)
 		{
-			$ss=Survey::load($this->selfSurvey);
+			$ss= new Survey($this->self_survey_id);
 			$sR=$ss->getCategoryRanks();
 			foreach ($sR as $s)
 			{
+				//add code here i guess
 			}
 		}
 		
-		if($this->adminSurvey>0)
+		if($this->admin_survey_id>0)
 		{
-			$sa=Survey::load($this->adminSurvey);
+			$sa= new Survey($this->admin_survey_id);
 			$aR=$sa->getCategoryRanks();
 		}
-		if($this->selfSurvey<0)
+		if($this->self_survey_id<0)
 		{
 			$sR=$aR;
 		}
 		
-		if($this->adminSurvey<0)
+		if($this->admin_survey_id<0)
 		{
 			$aR=$sR;
 		}

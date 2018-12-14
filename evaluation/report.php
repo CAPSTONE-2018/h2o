@@ -1,181 +1,216 @@
-<?php error_reporting(E_ERROR | E_WARNING | E_PARSE); ?>
-<?php include('./class/loginClass.php');?>
-<?php include('./class/User.php'); ?>
-<?php include_once('./class/Survey.php'); ?>
-<?php $class = new mainLogin(); ?>
+<?php 
+include 'navbar.php';
+error_reporting(E_ERROR | E_WARNING | E_PARSE); 
+ini_set('error_reporting', E_ALL);
+include('./class/User.php'); 
 
-<html>
-	<head>
-		
-	<style type="text/css">
-#wrap {
-   width:100%;
-   margin:0 auto;
+$isAdmin = false;
+
+if($class->getCurrentUser('role') == 'admin'){
+	$isAdmin = true;
 }
-#left_col {
-   float:left;
-   width:50%;
-}
-#right_col {
-   float:right;
-   width:50%;
-}
-</style>
-		
-	</head>
-<body> 
-	
-<h1> Employee Evaluation Results</h1>
+                                                    
 
+function drawUserHTML(){
 	
+	$db = new Database();
+	$users = $db->sp_get_all_users('user');
 	
-	<?php ini_set('error_reporting', E_ALL);?>
-<?php
-	                                       # gets User and Surveys
-	$class = new mainLogin();
-	$user = $class->getCurrentUser($class->username_field);
-	echo "Employee Report For: " . $user;              
-	$myUser= User::loadF($user);
-	
-	$s = new Survey();
-	$a = new Survey();
-    $a = Survey::load($myUser-> adminSurvey);
-	$s=Survey::load($myUser-> selfSurvey);
-	
-
-
-
-	$Question = array(               #creates an Array for the questions
-	
-     #Communications  [1 - 5]  #6 comments
-     "Expresses Ideas and Thoughts Verbally",
-     "Expresses Ideas and Thoughts in Written Form",
-     "Exhibits Good Listening and Comprehension",
-     "Keeps Others Adequately Informed",
-     "Uses Appropriate Communication Methods",
-       "Comments",
-      #Cooperation  [7- 12]  13 comments
-	 "Establishes and Maintains Effective Relations",
-     "Exhibits Tact and Consideration",
-     "Displays Positive Outlook and Plesent Manner",
-     "Offers Assistance and Support to Coworkers",
-     "Works Cooperatively in Group Situations",
-     "Works Actively to Resolve Conflicts",
-        "Comments",
-      #Cost Consciousness [14 - 17] 18 comments
-     "Works Within Approved Budget",
-     "Conserves Organizational Resources",
-     "Develops and Implements Cost-saving Measures",
-     "Contributes to Profits and Revenue",
-        "Comments",
-     #Dependability  [19 - 24] 25 comments
-     "Responds to Requests for Service and Assistance",
-     "Follows Instructions, Responds to Management Directions",
-     "Takes Responsibility for Own Actions",
-     "Commits to Doing Best Job Possible",
-     "Keeps Commitments",
-     "Meets Attendance and Punctuality Guidelines",    
-       "Comments",
-     #Initiative  [26 - 31] 32 comments
-     "Volunteers Readily",
-     "Undertakes Self-Development Activities",
-     "Seeks Increased Responsibilities",
-     "Takes Independant Actions and Calculated Risks",
-     "Looks for and Takes Advantages of Opportunities",
-     "Asks for Help When Needed",
-       "Comments",
-     #Job Knowledge [33-38] 39
-     "Competent in Required Job Skills and Knowledge",
-     "Exhibits Ability to Learn and Apply New Skills",
-     "Keeps Abreast of Current Developments",
-     "Requires Minimal Supervision",
-     "Displays Understanding of How Job Relates to Others",
-     "Uses Resources Effectively",
-        "Comments",
-     #Judgement [40 - 44] 45
-     "Displays Willingness to Make Decisions",
-     "Exhibits Sound and Accurate Judgement",
-     "Supports and Explains Reasoning for Decisions",
-     "Includes Appropriate People in Decision-Making Process",
-     "Makes Timely Decisions",
-        "Comments",
-     #Planning and Organization [46-51] 52
-     "Prioritizes and Plans Work Activities",
-     "Uses Time Efficiently",
-     "Plans for Additional Resources",
-     "Integrates Changes Smoothly",
-     "Sets Goals and Objectives",
-     "Works in an Organized Manner",
-       "Comments",
-     #Problem Solving   [53 - 57] 58
-     "Identifies Problems in a Timely Manner",
-     "Gathers and analyzes Information Skillfully",
-     "Develops Alternative Solutions",
-     "Resolves Problems in Early Stages",
-     "Works Well in Group Problem-Solving Situations",
-       "Comments",
-     #Quality [59 - 63]64
-     "Demonstrates Accuracy and Thoroughness",
-     "Displays Commitment to Excellence",
-     "Looks for Ways to Improve and Promote Quality",
-     "Applies Feedback to Improve Preformance",
-     "Monitors Own Work to Ensure Quality",
-     "Comments",
-     #Quantity[65 - 69] 70
-     "Meets Productivity Standards",
-     "Completes Work in a Timely Manner",
-     "Strives to Increase Productivity",
-     "Works Quickly",
-     "Achieves Established Goals",
-     "Comments",
-     #Use of Technology [71- 75]
-     "Demonstrates Required Skills",
-     "Adapts to New Technologies",
-     "Troubleshoots Problems",
-     "Uses Technology to Increase Productivity",
-     "Keeps Technical Skills up to Date",
-    
-) ;                                                          #end of array
-
-   
-   
-     
-	 $myUser->draw("RandomString");                           #calls draw function
-	
-	
-
-	
-	
-	for ($i = 0; $i <= 75; $i++) {                            #iterates through all questions
-   
-    if($i == 0)echo "<div id=\"wrap\"> <div id=\"left_col\"> <h2> Communication  </h2>";
-    if($i == 6)echo "<h2> Cooperation </h2>";
-    if($i == 13)echo "<h2> Cost Consciousness </h2>";
-    if($i == 18)echo "<h2> Dependability  </h2>";
-    if($i == 25)echo "<h2> Initiative </h2>";
-    if($i == 32)echo "<h2> Job Knowledge  </h2>";
-    if($i == 39)echo "</div> <div id=\"right_col\"> <h2> Judgement  </h2>";
-    if($i == 45)echo "<h2> Planning and Organization </h2>";
-	if($i == 52)echo "<h2> Problem Solving </h2>";
-	if($i == 58)echo "<h2> Quality </h2>";
-	if($i == 64)echo "<h2> Quantity </h2>";
-	if($i == 70)echo "<h2> Use of Technology  </h2>";
-	
-	
-    echo "<b>" . $Question[$i] . "</b> <br />";
-	
-	
-	echo "Self-Evaluation Score: ";
-	echo $s -> answers[$i];
-	
-	
-	echo "<br /> Evaluator Score: ";
-	echo $a -> answers[$i];
-	echo "<br />";
+	$html .= "<select id='username_ctrl' onchange='load(this);'>";
+	foreach($users as $u){
+		$html .= "<option>" . $u['username'] . "</option>";
 	}
+	$html .= "</select>";
 	
-	
-	 echo "</div></div><br />";
+	return $html;
+}
 ?>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+    <title>H20 - Employee Evaluation Portal</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes"> 
+    
+	<link href="css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link href="css/bootstrap-responsive.min.css" rel="stylesheet" type="text/css" />
+
+	<link href="css/font-awesome.css" rel="stylesheet">
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,400,600" rel="stylesheet">
+		
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<link href="css/pages/signin.css" rel="stylesheet" type="text/css">
+	<link href="css/pages/dashboard.css" rel="stylesheet">
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+
+	<style type="text/css">
+		#wrap {
+		   width:100%;
+		   margin:0 auto;
+		}
+		#left_col {
+		   float:left;
+		   width:50%;
+		}
+		#right_col {
+		   float:right;
+		   width:50%;
+		}
+		.widget{
+			width:565px;
+			display:inline-block;
+			margin:5px 5px;
+			vertical-align:top;
+		}
+		.widget-header{
+			line-height:-5px !important;
+		}
+	</style>
+		
+</head>
+
+<body> 	
+
+	<div class="main">
+		<div class="main-inner">
+			<div class="container">
+				<div class="widget" style="width: 100%;">
+					<div class="widget-header"> <i class="icon-signal"></i>
+						<h3>Result Data</h3>
+					</div>
+					<div class="widget-content" style="text-align:center;">
+						
+						<?php
+	                        
+							# gets User and Surveys
+							$username = $class->getCurrentUser('username');
+							
+							//echo "Employee Report For: " . $username . "<br /> <br />"; 
+							echo "<h1 style='float:left;'> Employee Evaluation Results</h1> ";
+							
+							if ($isAdmin)
+								echo "Employee Report For: " . drawUserHTML() . "<br /> <br /> <hr />";   
+							else							
+								echo "Employee Report For: <input id='username_ctrl' readonly type='text' value='" . $username . "'/><br /> <br /> <hr />";   
+							//Build user object 
+							$myUser= new User($username);
+							
+							$userSurvey = new Survey($myUser->self_survey_id);
+							$adminSurvey = new Survey($myUser->admin_survey_id);
+
+							//$myUser->draw("RandomString");                           #calls draw function
+							
+						?>
+						
+						<div id="CHART1">
+						</div>
+					</div>
+				</div>			
+				<div id='rptMain'>
+					<!-- Report to be generated here -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<script src="js/jquery-1.7.2.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/signin.js"></script>
+	<script>
+	
+	google.charts.load('current', {'packages':['bar']});
+	google.charts.setOnLoadCallback(drawChart);
+	
+	var dt = [];
+	$(function(){
+		load($('#username_ctrl'));
+	});
+	function drawChart() {
+		
+		var data = google.visualization.arrayToDataTable(dt);
+		var options = {
+			title: 'Evaluation Average Scores by Category',
+			chartArea: {width: '50%'},
+			hAxis: {
+				title: 'Categories',
+				minValue: 0
+			},
+			vAxis: {
+				title: 'Rating'
+			}
+		};
+		var chart = new google.charts.Bar(document.getElementById('CHART1'));	
+		chart.draw(data, google.charts.Bar.convertOptions(options));
+	}
+	function load(ctrl){
+		dt = [
+			['City', 'Employee', 'Evaluator'],
+			['Communic',				0,0],
+			['Cooperation',				0,0],
+			['Cost Consc',				0,0],
+			['Dependable',				0,0],
+			['Initiative',				0,0],
+			['Job Knwlge',				0,0],
+			['Judgement',				0,0],
+			['Planning ',				0,0],
+			['Prob Solving',			0,0],
+			['Quality',					0,0],
+			['Quantity',				0,0],
+			['Use of Tech',				0,0]
+		];
+		
+		var user = $(ctrl).val();
+		$('#rptMain').html(user);
+		
+		$.ajax({
+			cache: false,
+			url: '/ajax/loadReport.php',
+			contentType: 'JSON',
+			data: {survFor: user},
+			type: 'GET',
+			dataType: 'TEXT',
+			success: function(result){
+				$('#rptMain').html(result);
+			},
+			error: function(){
+				alert('error calling ajax');
+			}
+		});
+		
+		$.ajax({
+			cache: false,
+			url: '/ajax/loadReportChart.php',
+			contentType: 'JSON',
+			data: {survFor: user},
+			type: 'GET',
+			dataType: 'JSON',
+			success: function(result){
+				dt = [
+					['City', 'Employee', 'Evaluator'],
+					['Communic',			result.u1, result.a1],
+					['Cooperation',			result.u2, result.a2],
+					['Cost Consc',			result.u3, result.a3],
+					['Dependable',			result.u4, result.a4],
+					['Initiative',			result.u5, result.a5],
+					['Job Knwlge',			result.u6, result.a6],
+					['Judgement',			result.u7, result.a7],
+					['Planning',			result.u8, result.a8],
+					['Prob Solving',		result.u9, result.a9],
+					['Quality',				result.u10, result.a10],
+					['Quantity',			result.u11, result.a11],
+					['Use of Tech',			result.u12, result.a12]
+				];
+				drawChart();
+			},
+			error: function(){
+				alert('error calling ajax');
+			}
+		});
+	}
+	</script>
 </body>
 </html>

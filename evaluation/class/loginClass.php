@@ -1,4 +1,6 @@
 <?php
+include('./class/config.php');
+
 session_start();
 
 /**
@@ -10,30 +12,20 @@ session_start();
 
 class mainLogin {
 	public $currentUser;
-	public $users_table;
-	public $username_id_field;
-	public $username_field;
-	public $password_field;
-	public $user_role;
 	protected $_query;
 	protected $_numRows;
 	protected $_fetchArray;
 	
 	public function __construct() {
 		// Initialize MySQL Database
-		include('./class/config.php');
+		
 		mysql_connect(DB_Host, DB_User, DB_Pass);
 		mysql_select_db(DB_Name);
-		
-		$this->users_table = DB_Users_Table;
-		$this->username_id_field = DB_Username_Id_Field;
-		$this->username_field = DB_Username_Field;
-		$this->password_field = DB_Password_Field;
-		$this->user_role = DB_User_Role;		
+			
 
 		// Initialize user if logged in
 		if(isset($_SESSION['user'])) {
-			$query = $this->query("SELECT * FROM `{$this->users_table}` WHERE `{$this->username_field}` = '{$_SESSION['user']}';");
+			$query = $this->query("SELECT * FROM " . DB_Users_Table ." WHERE username = '".$_SESSION['user']."';");
 			if($this->_numRows == 1) {
 				$this->currentUser = $_SESSION['user'];
 			}
@@ -75,8 +67,8 @@ class mainLogin {
 		$pass = $this->sanitize($pass);
 		if($hash == "no hash") { $hash = ""; }
 		if($hash != "") { $pass = hash($hash, $pass); }
-		$this->query("SELECT * FROM `{$this->users_table}` WHERE `{$this->username_field}` = '{$user}' AND `{$this->password_field}` = '{$pass}';");
-		if($this->_numRows == 1) {
+		$this->query("SELECT * FROM ".DB_Users_Table ." WHERE username = '".$user."' AND passwd = '".$pass."';");
+		if($this->_numRows > 0) {
 			// Correct Credentials
 			return true;
 		} else {
@@ -92,6 +84,7 @@ class mainLogin {
 	 */
 	public function setUser($user) {
 		$_SESSION['user'] = $user;
+		$this->currentUser = $_SESSION['user'];
 	}
 	
 	/**
@@ -110,7 +103,7 @@ class mainLogin {
 	 */
 	public function getCurrentUser($row = "") {
 		if($this->currentUser != "") {
-			$this->query("SELECT * FROM `{$this->users_table}` WHERE `{$this->username_field}` = '{$this->currentUser}';");
+			$this->query("SELECT * FROM " . DB_Users_Table . " WHERE username = '" . $this->currentUser . "';");
 			if($row == "") {
 				// Return full array
 				return $this->_fetchArray;
@@ -143,9 +136,11 @@ class mainLogin {
 		return $this->_fetchArray[0];
 	}
 	
+	
 	public function generalQuery($sql) {
 		$this->query($sql);
 		return $this->_fetchArray;
 	}
+	
 }
 ?>
